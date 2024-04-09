@@ -1,5 +1,18 @@
 @extends('layouts.master')
 @section('css')
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 1;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
 @toastr_css
 @section('title')
 {{ trans('Companies_trans.title_page') }}
@@ -43,7 +56,7 @@
                 <br><br>
 
                 <div class="table-responsive">
-                    <table id="TableCompany" class="display">
+                    <table id="TableCompany" class="display" style="border-spacing: 1px;">
                         <thead>
                             <tr>
                                 <th>#</th>

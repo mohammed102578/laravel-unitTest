@@ -1,5 +1,18 @@
 @extends('layouts.master')
 @section('css')
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 1;
+        border: 1px solid #ddd;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+</style>
 @toastr_css
 @section('title')
 {{ trans('Employees_trans.title_page') }}
@@ -43,9 +56,9 @@
                 <br><br>
 
                 <div class="table-responsive">
-                    <table id="EmployeeDataTable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center">
-                        <thead>
-                            <tr>
+                    <table id="EmployeeDataTable"  class="display" style="border-spacing: 1px;">
+                    <thead>
+                    <tr>
                                 <th>#</th>
                                 <th>{{ trans('Employees_trans.Name') }}</th>
                                 <th>{{ trans('Employees_trans.Company_name') }}</th>
