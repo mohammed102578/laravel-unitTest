@@ -3,6 +3,7 @@ namespace Database\Factories;
 
 use App\Models\Company;
 use App\Models\Employee;
+use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
 
@@ -22,14 +23,24 @@ class EmployeeFactory extends Factory
      */
     public function definition()
     {
-        $first_name_ar = $this->faker->company;
-        $last_name_ar = $this->faker->company;
+        // Initialize Faker with Arabic locale
+        $faker = \Faker\Factory::create('ar_SA');
+        $faker->addProvider(new \Faker\Provider\ar_SA\Person($faker));
+
+        // Generate Arabic names
+        $first_name_ar = $faker->firstName;
+        $last_name_ar = $faker->lastName;
+
+        // Generate English names
         $first_name_en = $this->faker->company;
         $last_name_en = $this->faker->company;
+
+        // Get a random company ID
         $company_id = Company::inRandomOrder()->value('id');
         if (is_null($company_id)) {
             $company_id = $this->faker->numberBetween(1, 100);
         }
+
         return [
             'first_name' => Arr::wrap([
                 'ar' => $first_name_ar,
@@ -41,7 +52,7 @@ class EmployeeFactory extends Factory
             ]),
             'email' => $this->faker->unique()->safeEmail,
             'phone' => $this->faker->phoneNumber,
-            'company_id'=> $company_id
+            'company_id' => $company_id,
         ];
     }
 }

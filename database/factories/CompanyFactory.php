@@ -1,7 +1,6 @@
 <?php
 namespace Database\Factories;
 
-
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Arr;
@@ -22,7 +21,14 @@ class CompanyFactory extends Factory
      */
     public function definition()
     {
-        $name_ar = $this->faker->company;
+        // Initialize Faker with Arabic locale
+        $faker = \Faker\Factory::create('ar_SA');
+        $faker->addProvider(new \Faker\Provider\ar_SA\Company($faker));
+
+        // Generate Arabic company names
+        $name_ar = $faker->company;
+
+        // Generate English company names
         $name_en = $this->faker->company;
 
         return [
